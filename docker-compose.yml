@@ -1,0 +1,45 @@
+version: '3.5'
+
+services:
+  nodrizatech-php81-symfony54:
+    container_name: nodrizatech-php81-symfony54
+    build:
+      context: ./docker
+      args:
+        UID: $U_ID
+    volumes:
+      - ./:/appdata/www
+    ###> XDEBUG 3 ###
+    # Use your client IP here
+    # Linux: run "ip a | grep docker0"
+    # Windows (with WSL2) and Mac: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=nodrizatech-php81-symfony54
+    ports:
+      - '1000:8000'
+    networks:
+      - nodrizatech-php81-symfony54-network
+    depends_on:
+      - nodrizatech-php81-symfony54-postgres
+
+  nodrizatech-php81-symfony54-postgres:
+    container_name: nodrizatech-php81-symfony54-postgres
+    image: postgres:14-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: passwd
+      POSTGRES_DB: postgres_nodrizatech
+    volumes:
+      - nodrizatech-php81-symfony54-pgsql-data:/var/lib/postgresql/data
+    networks:
+      - nodrizatech-php81-symfony54-network
+
+networks:
+  nodrizatech-php81-symfony54-network:
+
+volumes:
+  nodrizatech-php81-symfony54-pgsql-data:
