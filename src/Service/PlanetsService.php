@@ -26,4 +26,28 @@ class PlanetsService
 
         return $planetFormatted;
     }
+
+    /**
+     * @param $planetStructure
+     * @param $parameter
+     * @return array
+     */
+    public function validatePlanet($planetStructure, $parameter): array
+    {
+        $differentKeys = array_diff_key($parameter, $planetStructure);
+
+        if (!empty($differentKeys)) {
+            foreach ($differentKeys as $key => $index) {
+                if (!array_key_exists($key, $planetStructure)) {
+                    return ['JSON with not valid parameters'];
+                }
+            }
+        }
+
+        if (array_key_exists('name', $parameter)) {
+            return [];
+        }
+
+        return ['Name not found in parameters'];
+    }
 }
