@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Infrastructure\Http;
 
-use App\Entity\Planet;
-use App\Factory\JsonResponseFactory;
-use App\Service\JsonPlaceholderApi;
-use App\Service\PlanetsService;
+use App\Domain\Entity\Planet;
+use App\Application\Factory\JsonResponseFactory;
+use App\Application\Service\JsonPlaceholderApi;
+use App\Application\Service\PlanetsService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Factory;
+namespace App\Application\Factory;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
