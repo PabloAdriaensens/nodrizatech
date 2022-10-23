@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Planet
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(unique: true)]
     #[Assert\Unique]
     #[Assert\NotNull]
